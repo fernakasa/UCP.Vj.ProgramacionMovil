@@ -7,20 +7,23 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    RecyclerView recyclerView;
+    SeriesAdapter seriesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 new SeriesData(R.drawable.thewitcher,"The Witcher","2019","16+","1 Temporada","Suspenso","Un hombre misterioso quiere sumar a Geralt a la cacería de un dragón terrible, y la aventura trae una cara conocida. Ciri sospecha de su entorno y hace preguntas.")
         };
 
-        SeriesAdapter seriesAdapter = new SeriesAdapter(mySeriesData,MainActivity.this);
+        seriesAdapter = new SeriesAdapter(mySeriesData,MainActivity.this);
         recyclerView.setAdapter(seriesAdapter);
 
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -49,6 +52,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+        MenuItem item = menu.findItem(R.id.search_icon);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                seriesAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
+
         return super.onCreateOptionsMenu(menu);
     }
 }

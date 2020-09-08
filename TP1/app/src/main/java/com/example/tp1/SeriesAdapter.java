@@ -4,20 +4,32 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder>{
+public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder> implements Filterable {
     SeriesData[] seriesData;
+    SeriesData[] originalSeriesData;
+    List<String> seriesList = new ArrayList<String>();
     Context context;
 
     public SeriesAdapter(SeriesData[] seriesData,MainActivity activity) {
         this.seriesData = seriesData;
+        this.originalSeriesData = seriesData;
         this.context = activity;
+        for (SeriesData strTemp : seriesData){
+            seriesList.add(strTemp.getSerieNombre());
+        }
     }
 
     @NonNull
@@ -52,6 +64,39 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
     public int getItemCount() {
         return seriesData.length;
     }
+
+    @Override
+    public Filter getFilter() {
+        return myFilter;
+    }
+
+    Filter myFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<String> filteredList = new ArrayList<>();
+
+            if (charSequence == null || charSequence.length() == 0) {
+                filteredList.addAll(seriesList);
+            } else {
+                for (String movie: seriesList) {
+                    if (movie.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        filteredList.add(movie);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            seriesList.clear();
+            seriesList.addAll((Collection<? extends String>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imageViewSeries;

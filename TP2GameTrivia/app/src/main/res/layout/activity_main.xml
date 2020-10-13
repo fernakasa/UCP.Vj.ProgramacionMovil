@@ -20,9 +20,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="SIGN IN"
+            android:text="TP2 - TRIVIA GAME  SIGN IN"
+            android:textAlignment="center"
+            android:scrollHorizontally="false"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="40sp" />
 
 
 
@@ -36,7 +38,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="80dp"
         android:gravity="center"
         android:orientation="vertical">
 

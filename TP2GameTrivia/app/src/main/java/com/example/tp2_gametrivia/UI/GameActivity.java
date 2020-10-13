@@ -125,7 +125,7 @@ public class GameActivity extends Activity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Toast.makeText(GameActivity.this, "Todo Ok", Toast.LENGTH_LONG).show();
+                        Toast.makeText(GameActivity.this, "START!", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -258,6 +258,7 @@ public class GameActivity extends Activity {
 
     public void timeUp() {
         Intent intent = new Intent(GameActivity.this, EndGameActivity.class);
+        intent.putExtra("Player", player);
         startActivity(intent);
         finish();
     }
@@ -265,6 +266,7 @@ public class GameActivity extends Activity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(GameActivity.this, HomeActivity.class);
+        intent.putExtra("Player", player);
         startActivity(intent);
         finish();
     }

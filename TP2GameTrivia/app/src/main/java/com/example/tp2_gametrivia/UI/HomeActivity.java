@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         rankin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, GameActivity.class);
+                Intent intent = new Intent(HomeActivity.this, RankingActivity.class);
                 intent.putExtra("Player", player);
                 startActivity(intent);
                 finish();

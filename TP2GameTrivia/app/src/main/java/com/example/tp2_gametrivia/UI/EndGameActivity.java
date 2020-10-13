@@ -60,7 +60,7 @@ public class EndGameActivity extends Activity {
         rankin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EndGameActivity.this, GameActivity.class);
+                Intent intent = new Intent(EndGameActivity.this, RankingActivity.class);
                 intent.putExtra("Player", player);
                 startActivity(intent);
                 finish();

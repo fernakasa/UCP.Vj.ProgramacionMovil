@@ -15,6 +15,7 @@
         <activity android:name=".UI.EndGameActivity"/>
         <activity android:name=".UI.HomeActivity"/>
         <activity android:name=".UI.RegisterActivity" />
+        <activity android:name=".UI.RankingActivity" />
         <activity android:name=".UI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_margin="25dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/question_shape"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_baseline_alarm_24" />
+
+                <TextView
+                    android:id="@+id/gameTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="sans-serif"
+                    android:text="--"
+                    android:textColor="#EEE"
+                    android:layout_marginHorizontal="5dp"
+                    android:gravity="center_vertical|center"
+                    android:textSize="36sp"
+                    android:shadowColor="#111"
+                    android:shadowDx="3"
+                    android:shadowDy="4"
+                    android:shadowRadius="2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_baseline_monetization_on_24" />
+
+                <TextView
+                    android:id="@+id/gameScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="sans-serif"
+                    android:text="000"
+                    android:layout_marginHorizontal="5dp"
+                    android:textColor="#EEE"
+                    android:gravity="center_vertical|center"
+                    android:textSize="36sp"
+                    android:shadowColor="#111"
+                    android:shadowDx="3"
+                    android:shadowDy="4"
+                    android:shadowRadius="2"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/question_shape"
+            android:gravity="center"
+            android:layout_marginTop="15sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="Question:"
+                android:textColor="@color/colorPrimary"
+                android:gravity="center_vertical|center"
+                android:textSize="36sp"
+                android:shadowColor="#111"
+                android:shadowDx="3"
+                android:shadowDy="4"
+                android:shadowRadius="2"
+                android:background="@drawable/question_shape"/>
+
+            <TextView
+                android:id="@+id/gameQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:autoSizeMaxTextSize="64sp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical|center"
+                android:shadowColor="#111111"
+                android:shadowDx="3"
+                android:shadowDy="4"
+                android:shadowRadius="3"
+                android:text="question"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/question_shape"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="Answers:"
+                android:textColor="@color/colorPrimary"
+                android:gravity="center_vertical|center"
+                android:textSize="36sp"
+                android:shadowColor="#111"
+                android:shadowDx="3"
+                android:shadowDy="4"
+                android:shadowRadius="2"
+                android:background="@drawable/question_shape"/>
+
+            <Button
+                android:id="@+id/gameButtonA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button"
+                android:text="ButtonA"
+                android:onClick="buttonA"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/gameButtonB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button"
+                android:text="ButtonB"
+                android:onClick="buttonB"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/gameButtonC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button"
+                android:text="ButtonC"
+                android:onClick="buttonC"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/gameButtonD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button"
+                android:text="ButtonD"
+                android:onClick="buttonD"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

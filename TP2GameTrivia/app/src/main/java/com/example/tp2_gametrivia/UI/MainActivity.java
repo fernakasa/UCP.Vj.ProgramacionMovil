@@ -5,7 +5,6 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 Player player = db.getPlayer(email, password);
                 if (player != null) {
                     Intent i = new Intent(MainActivity.this, HomeActivity.class);
-                    i.putExtra("Player", (Parcelable) player);
+                    i.putExtra("Player", player);
                     startActivity(i);
                     finish();
                 }else{
@@ -66,6 +65,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

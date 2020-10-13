@@ -20,7 +20,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tp2_gametrivia.Database.AppDatabase;
+import com.example.tp2_gametrivia.Entidades.Game;
 import com.example.tp2_gametrivia.Entidades.Player;
+import com.example.tp2_gametrivia.Interfaces.GameDao;
 import com.example.tp2_gametrivia.R;
 
 import org.json.JSONArray;
@@ -30,7 +33,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import androidx.room.Room;
+
 public class GameActivity extends Activity {
+    private GameDao gameDao;
     ArrayList<String[]> questions = new ArrayList<String[]>();
     private TextView question;
     private TextView timer;
@@ -44,6 +50,8 @@ public class GameActivity extends Activity {
     int timeValue = 30;
     int correctAns;
     CountDownTimer countDownTimer;
+    GameDao db;
+    AppDatabase dataBase;
 
     private JSONArray trivias;
     private Player player;
@@ -52,6 +60,12 @@ public class GameActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        dataBase = Room.databaseBuilder(this, AppDatabase.class, "trivia.db")
+                .allowMainThreadQueries()
+                .build();
+
+        db = dataBase.gameDao();
 
         player = (Player) getIntent().getSerializableExtra("Player");
 
@@ -62,6 +76,8 @@ public class GameActivity extends Activity {
         buttonB = findViewById(R.id.gameButtonB);
         buttonC = findViewById(R.id.gameButtonC);
         buttonD = findViewById(R.id.gameButtonD);
+
+        score.setText("" + db.getScore(player.getPlayer_id()));
 
         disableButton();
 
@@ -150,9 +166,13 @@ public class GameActivity extends Activity {
 
     public void gameEnd() {
         onStop();
-        int totalPoint = correctAns * timeValue;
-
+        long totalPoint = correctAns * timeValue;
+        gameDao = Room.databaseBuilder(this, AppDatabase.class, "trivia.db").allowMainThreadQueries().build().gameDao();
+        Game game = new Game(player.getPlayer_id(),totalPoint);
+        gameDao.insert(game);
         Intent intent = new Intent(GameActivity.this, EndGameActivity.class);
+        intent.putExtra("Player", player);
+        intent.putExtra("Game", game);
         startActivity(intent);
         finish();
     }

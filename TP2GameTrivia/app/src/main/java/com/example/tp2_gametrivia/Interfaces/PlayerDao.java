@@ -10,13 +10,13 @@ import androidx.room.Query;
 public interface PlayerDao {
     // SELECT COUNT PLAYER
     @Query("SELECT COUNT(*) FROM player")
-    int count();
+    public int count();
 
     //INSERT PLAYER
     @Insert
-    void insert(Player player);
+    public void insert(Player player);
 
     //LOGIN PLAYER
     @Query("SELECT * FROM player where username = :username and password= :password limit 1")
-    Player getPlayer(String username, String password);
+    public Player getPlayer(String username, String password);
 }

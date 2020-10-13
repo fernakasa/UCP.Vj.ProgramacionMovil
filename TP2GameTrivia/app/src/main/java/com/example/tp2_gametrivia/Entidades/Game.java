@@ -1,33 +1,22 @@
 package com.example.tp2_gametrivia.Entidades;
 
-import android.provider.BaseColumns;
+import java.io.Serializable;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = Game.TABLE_NAME)
-public class Game {
-
-    //names for tables
-    public static final String TABLE_NAME = "game";
-    public static final String COLUMN_ID = BaseColumns._ID;
+@Entity
+public class Game implements Serializable {
 
     //properties
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(index = true, name = COLUMN_ID)
+    @NonNull
     public long game_id;
-
-    @ColumnInfo(name = "player_id")
     private long player_id;
-
-    @ColumnInfo(name = "score")
     private long score;
-
-    @ColumnInfo(name = "lat")
     private long lat;
-
-    @ColumnInfo(name = "lon")
     private long lon;
 
     public long getGame_id() {
@@ -70,11 +59,15 @@ public class Game {
         this.lon = lon;
     }
 
-    public Game(long game_id, long player_id, long score, long lat, long lon) {
-        this.game_id = game_id;
+    public Game(long player_id, long score) {
         this.player_id = player_id;
         this.score = score;
-        this.lat = lat;
-        this.lon = lon;
     }
+
+//    public Game(long player_id, long score, long lat, long lon) {
+//        this.player_id = player_id;
+//        this.score = score;
+//        this.lat = lat;
+//        this.lon = lon;
+//    }
 }

@@ -1,13 +1,9 @@
 package com.example.tp2_gametrivia.Entidades;
 
-import android.provider.BaseColumns;
-
 import java.io.Serializable;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -34,6 +30,7 @@ public class Player implements Serializable {
     public void setPassword(String password) { this.password = password; }
 
     public Player(String username, String password){
+
         this.username = username;
         this.password = password;
     }

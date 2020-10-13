@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         db = dataBase.playerDao();
 
 
+
         textViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
